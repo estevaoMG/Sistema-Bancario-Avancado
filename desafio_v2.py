@@ -110,8 +110,8 @@ class ContaCorrente(Conta):
 
     def __str__(self):
         return  f"""
-            Agência:\t{self.agencia}
-            C/C:\t{self.numero}
+            Agência:\t{self.agencia}s
+            C/C:\t\t{self.numero}
             Titular:\t{self.cliente.nome}
         """
     
@@ -129,7 +129,7 @@ class Historico:
             {
                 "tipo": transacao.__class__.__name__,
                 "valor": transacao.valor,
-                "data": datetime.now().strftime("%d-%m-%Y %H:%M:%s"),
+                "data": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
             }
         )
 
@@ -169,7 +169,7 @@ class Deposito(Transacao):
         return self._valor
     
     def registrar(self, conta):
-        sucesso_transacao = conta.deposotar(self.valor)
+        sucesso_transacao = conta.depositar(self.valor)
 
         if sucesso_transacao:
             conta.historico.adicionar_transacao(self)
